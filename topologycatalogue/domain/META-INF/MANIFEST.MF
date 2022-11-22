@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: domain
+Bundle-SymbolicName: domain
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-18
+Automatic-Module-Name: domain
+Export-Package: dev.catalogue.topology.domain
