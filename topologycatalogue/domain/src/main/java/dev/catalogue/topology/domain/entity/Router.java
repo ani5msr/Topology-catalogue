@@ -5,6 +5,7 @@ import lombok.Getter;
 import java.util.function.Predicate;
 @Getter
 public abstract class Router extends Equipment{
+	@Getter
 	protected final Routertype routertype;
 	public static Predicate<Equipment> getRouterTypePredicate(Routertype routertype){
 	        return r -> ((Router)r).getRouterType().equals(routertype);

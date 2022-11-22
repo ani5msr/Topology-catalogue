@@ -7,10 +7,15 @@ import dev.catalogue.topology.domain.valueobj.*;
 @Getter
 @AllArgsConstructor
 public class Equipment {
+	@Getter
 	protected ID id;
+	@Getter
 	protected Vendor vendor;
+	@Getter
 	protected Model model;
+	@Getter
 	protected IP ip;
+	@Getter
 	protected Location location;
 	public Equipment(ID id, Vendor vendor, Model model, IP ip, Location location) {
 		this.id = id;
