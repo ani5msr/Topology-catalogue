@@ -17,4 +17,8 @@ public class Location {
 	 private String country;
 	 private float latitude;
 	 private float longitude;
+	public String getCountry() {
+		// TODO Auto-generated method stub
+		return this.country;
+	}
 }
