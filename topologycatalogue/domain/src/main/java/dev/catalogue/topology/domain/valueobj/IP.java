@@ -25,4 +25,16 @@ public class IP {
 	 public static IP fromAddress(String ipAddress){
 	        return new IP(ipAddress);
 	    }
+	/**
+	 * @return the ipAddress
+	 */
+	public String getIpAddress() {
+		return ipAddress;
+	}
+	/**
+	 * @return the protocol
+	 */
+	public Protocol getProtocol() {
+		return protocol;
+	}
 }
