@@ -12,6 +12,9 @@ public class SameIPSpecification extends AbstractSpecification<Equipment> {
 		public void setEquipment(Equipment equipment) {
 			this.equipment = equipment;
 		}
+		public SameIPSpecification(Equipment equipment) {
+			this.equipment = equipment;
+		}
 		@Override
 		public boolean isSatisfiedBy(Equipment anyEquipment) {
 	        return !equipment.getIp().equals(anyEquipment.getIp());
