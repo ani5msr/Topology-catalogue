@@ -26,4 +26,8 @@ public class EdgeRouter extends Router {
 
         return this.switches.remove(anySwitch.id);
     }
+	public Map<ID, Switch> getSwitches() {
+		// TODO Auto-generated method stub
+		return this.switches;
+	}
 }
