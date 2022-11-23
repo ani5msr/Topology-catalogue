@@ -20,4 +20,22 @@ public class Network {
 			 this.networkName = networkName;
 			 this.networkCidr = networkCidr;
 			 }
+	/**
+	 * @return the networkAddress
+	 */
+	public IP getNetworkAddress() {
+		return networkAddress;
+	}
+	/**
+	 * @return the networkName
+	 */
+	public String getNetworkName() {
+		return networkName;
+	}
+	/**
+	 * @return the networkCidr
+	 */
+	public int getNetworkCidr() {
+		return networkCidr;
+	}
 }
