@@ -21,6 +21,21 @@ public class CoreRouter extends Router{
 	        sameIpSpec.check(anyRouter);
 	        return this.routers.put(anyRouter.id, anyRouter);
 	    }
+	 public Router removeRouter(Router anyRouter) {
+	        var emptyRoutersSpec = new EmptyRouterSpecification();
+	        var emptySwitchSpec = new EmptySwitchSpecification();
+
+	        switch (anyRouter.routertype) {
+	            case Core:
+	                var coreRouter = (CoreRouter)anyRouter;
+	                emptyRoutersSpec.check(coreRouter);
+	                break;
+	            case Edge:
+	                var edgeRouter = (EdgeRouter)anyRouter;
+	                emptySwitchSpec.check(edgeRouter);
+	        }
+	        return this.routers.remove(anyRouter.id);
+	    }
 	public Map<ID, Router> getRouters() {
 		return this.routers;
 	}
