@@ -8,7 +8,6 @@ import java.util.Map;
 @Getter
 @ToString
 public class CoreRouter extends Router{
-	 @Getter
 	 private Map<ID, Router> routers;
 	 @Builder
 	 public CoreRouter(ID id, Vendor vendor, Model model, IP ip, Location location, Routertype routerType, Map<ID, Router> routers) {
@@ -18,10 +17,12 @@ public class CoreRouter extends Router{
 	 public Router addRouter(Router anyRouter) {
 	        var sameCountryRouterSpec = new SameCountrySpecification(this);
 	        var sameIpSpec = new SameIPSpecification(this);
-
 	        sameCountryRouterSpec.check(anyRouter);
 	        sameIpSpec.check(anyRouter);
-
 	        return this.routers.put(anyRouter.id, anyRouter);
 	    }
+	public Map<ID, Router> getRouters() {
+		return this.routers;
+	}
+	 
 }
