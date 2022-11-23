@@ -34,5 +34,9 @@ public class Equipment {
 	public Model getModel() {
 		return this.model;
 	}
+	public Location getLocation() {
+		// TODO Auto-generated method stub
+		return this.location;
+	}
 
 }
