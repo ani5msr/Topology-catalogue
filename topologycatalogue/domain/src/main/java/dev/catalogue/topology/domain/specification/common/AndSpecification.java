@@ -1,5 +1,6 @@
 package dev.catalogue.topology.domain.specification.common;
 
+import dev.catalogue.topology.domain.exception.*;
 public class AndSpecification<T> extends AbstractSpecification<T>{
 	 private Specification<T> spec1;
 	 private Specification<T> spec2;
@@ -12,5 +13,8 @@ public class AndSpecification<T> extends AbstractSpecification<T>{
 	 public boolean isSatisfiedBy(final T t) {
 	        return spec1.isSatisfiedBy(t) && spec2.isSatisfiedBy(t);
 	    }
+	 @Override
+	    public void check(T t) throws GenericException {
 
+	    }
 }
