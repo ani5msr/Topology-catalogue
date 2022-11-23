@@ -38,5 +38,9 @@ public class Equipment {
 		// TODO Auto-generated method stub
 		return this.location;
 	}
+	public IP getIp() {
+		// TODO Auto-generated method stub
+		return this.ip;
+	}
 
 }
