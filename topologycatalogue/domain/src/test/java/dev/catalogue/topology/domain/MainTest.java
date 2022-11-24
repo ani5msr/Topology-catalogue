@@ -192,5 +192,26 @@ class MainTest {
 	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
 	        assertThrows(GenericException.class, () -> networkSwitch.addNetworkToSwitch(newNetwork));
 	    }
+	    @Test
+	    public void addSwitchToEdgeRouter(){
+	        var location = createLocation("US");
+	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
+	        var edgeRouter = createEdgeRouter(location,"30.0.0.1");
+
+	        edgeRouter.addSwitch(networkSwitch);
+
+	        assertEquals(1,edgeRouter.getSwitches().size());
+	    }
+
+	    @Test
+	    public void addSwitchToEdgeRouter_failBecauseEquipmentOfDifferentCountries(){
+	        var locationUS = createLocation("US");
+	        var locationJP = createLocation("JP");
+	        var networkSwitch = createSwitch("30.0.0.0", 8, locationUS);
+	        var edgeRouter = createEdgeRouter(locationJP,"30.0.0.1");
+
+	        assertThrows(GenericException.class, () -> edgeRouter.addSwitch(networkSwitch));
+	    }
+
 
 }
