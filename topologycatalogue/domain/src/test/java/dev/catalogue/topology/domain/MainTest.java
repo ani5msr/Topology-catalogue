@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import dev.catalogue.topology.domain.service.*;
 import org.junit.jupiter.api.Test;
 import dev.catalogue.topology.domain.entity.*;
+import dev.catalogue.topology.domain.exception.GenericException;
 import dev.catalogue.topology.domain.specification.common.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
@@ -177,6 +178,19 @@ class MainTest {
 	        var actualId = Switchservice.findById(switchesOfEdgeRouter, expectedId).getId();
 	        assertEquals(expectedId, actualId);
 	    }
-
+	    @Test
+	    public void addNetworkToSwitch(){
+	        var location = createLocation("US");
+	        var newNetwork = createTestNetwork("30.0.0.1", 8);
+	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
+	        assertTrue(networkSwitch.addNetworkToSwitch(newNetwork));
+	    }
+	    @Test
+	    public void addNetworkToSwitch_failBecauseSameNetworkAddress(){
+	        var location = createLocation("US");
+	        var newNetwork = createTestNetwork("30.0.0.0", 8);
+	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
+	        assertThrows(GenericException.class, () -> networkSwitch.addNetworkToSwitch(newNetwork));
+	    }
 
 }
