@@ -112,5 +112,18 @@ class MainTest {
 	                Router.getCountryPredicate(location)).get(0).getLocation().getCountry();
 	        assertEquals(location.getCountry(), actualCountry);
 	    }
+	    @Test
+	    public void filterRouterByModel(){
+	        List<Router> routers = new ArrayList<>();
+	        var location = createLocation("US");
+	        var coreRouter = createCoreRouter(location, "30.0.0.1");
+	        var newCoreRouter = createCoreRouter(location, "40.0.0.1");
 
+	        coreRouter.addRouter(newCoreRouter);
+	        routers.add(coreRouter);
+
+	        var actualModel= Routerservice.filterAndRetrieveRouter(routers,
+	                Router.getModelPredicate(Model.ABC0001)).get(0).getModel();
+	        assertEquals(Model.ABC0001, actualModel);
+	    }
 }
