@@ -55,4 +55,29 @@ class MainTest {
 	        var networkSwitch = createNetworkSwitch(location, networks);
 	        return networkSwitch;
 	    }
+	  private EdgeRouter createEdgeRouter(Location location, String address){
+	        Map<ID, Switch> switchesOfEdgeRouter = new HashMap<>();
+	        return EdgeRouter.builder().
+	                id(ID.withoutId()).
+	                vendor(Vendor.CISCO).
+	                model(Model.ABC0002).
+	                ip(IP.fromAddress(address)).
+	                location(location).
+	                routerType(Routertype.Edge).
+	                switches(switchesOfEdgeRouter).
+	                build();
+	    }
+
+	    private CoreRouter createCoreRouter(Location location, String address){
+	        Map<ID, Router> routersOfCoreRouter = new HashMap<>();
+	        return CoreRouter.builder().
+	                id(ID.withoutId()).
+	                vendor(Vendor.HP).
+	                model(Model.ABC0001).
+	                ip(IP.fromAddress(address)).
+	                location(location).
+	                routerType(Routertype.Core).
+	                routers(routersOfCoreRouter).
+	                build();
+	    }
 }
