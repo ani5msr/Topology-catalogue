@@ -27,19 +27,5 @@ public class Equipment {
 	 getVendorPredicate(Vendor vendor){
 	 return r -> r.getVendor().equals(vendor);
 	 }
-	protected Vendor getVendor() {
-		return this.vendor;
-	}
-	public Model getModel() {
-		return this.model;
-	}
-	public Location getLocation() {
-		// TODO Auto-generated method stub
-		return this.location;
-	}
-	public IP getIp() {
-		// TODO Auto-generated method stub
-		return this.ip;
-	}
 
 }

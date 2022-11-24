@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import dev.catalogue.topology.domain.valueobj.*;
 import org.junit.jupiter.api.BeforeEach;
+import dev.catalogue.topology.domain.service.*;
 import org.junit.jupiter.api.Test;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.specification.common.*;
@@ -80,4 +81,36 @@ class MainTest {
 	                routers(routersOfCoreRouter).
 	                build();
 	    }
+	    @Test
+	    public void filterRouterByVendor(){
+	        List<Router> routers = new ArrayList<>();
+	        var location = createLocation("US");
+	        var coreRouter = createCoreRouter(location, "30.0.0.1");
+	        var edgeRouter = createEdgeRouter(location, "40.0.0.1");
+
+	        routers.add(coreRouter);
+	        routers.add(edgeRouter);
+
+	        var actualVendor = Routerservice.filterAndRetrieveRouter(routers,
+	                Router.getVendorPredicate(Vendor.HP)).get(0).getVendor();
+	        assertEquals(Vendor.HP, actualVendor);
+
+	        actualVendor = Routerservice.filterAndRetrieveRouter(routers,
+	                Router.getVendorPredicate(Vendor.CISCO)).get(0).getVendor();
+	        assertEquals(Vendor.CISCO, actualVendor);
+	    }
+
+	    @Test
+	    public void filterRouterByLocation(){
+	        List<Router> routers = new ArrayList<>();
+	        var location = createLocation("US");
+	        var coreRouter = createCoreRouter(location, "30.0.0.1");
+
+	        routers.add(coreRouter);
+
+	        var actualCountry = Routerservice.filterAndRetrieveRouter(routers,
+	                Router.getCountryPredicate(location)).get(0).getLocation().getCountry();
+	        assertEquals(location.getCountry(), actualCountry);
+	    }
+
 }
