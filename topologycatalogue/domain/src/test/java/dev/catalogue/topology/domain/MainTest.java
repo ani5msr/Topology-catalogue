@@ -148,6 +148,21 @@ class MainTest {
 	                Switch.getNetworkProtocolPredicate(Protocol.IPV4)).get(0).getNetworkAddress().getProtocol();
 	        assertEquals(expectedProtocol, actualProtocol);
 	    }
-	    
+	    @Test
+	    public void findRouterById(){
+	        List<Router> routers = new ArrayList<>();
+	        Map<ID, Router> routersOfCoreRouter = new HashMap<>();
+	        var location = createLocation("US");
+	        var coreRouter = createCoreRouter(location, "30.0.0.1");
+	        var newCoreRouter = createCoreRouter(location, "40.0.0.1");
+
+
+	        coreRouter.addRouter(newCoreRouter);
+	        routersOfCoreRouter.put(newCoreRouter.getId(), newCoreRouter);
+
+	        var expectedId = newCoreRouter.getId();
+	        var actualId = Routerservice.findById(routersOfCoreRouter, expectedId).getId();
+	        assertEquals(expectedId, actualId);
+	    }
 
 }
