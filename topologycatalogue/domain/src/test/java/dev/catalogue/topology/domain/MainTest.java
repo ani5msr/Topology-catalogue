@@ -126,4 +126,16 @@ class MainTest {
 	                Router.getModelPredicate(Model.ABC0001)).get(0).getModel();
 	        assertEquals(Model.ABC0001, actualModel);
 	    }
+	    @Test
+	    public void filterSwitchByType(){
+	        List<Switch> switches = new ArrayList<>();
+	        var location = createLocation("US");
+	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
+
+	        switches.add(networkSwitch);
+
+	        var actualSwitchType = Switchservice.filterAndRetrieveSwitch(switches,
+	                Switch.getSwitchTypePredicate(Switchtype.Layer3)).get(0).getSwitchType();
+	        assertEquals(Switchtype.Layer3, actualSwitchType);
+	    }
 }
