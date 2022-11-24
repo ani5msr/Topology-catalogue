@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import dev.catalogue.topology.domain.valueobj.*;
 @Getter
-@AllArgsConstructor
 public class Equipment {
 	@Getter
 	protected ID id;
