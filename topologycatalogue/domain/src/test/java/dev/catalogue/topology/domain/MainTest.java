@@ -42,5 +42,17 @@ class MainTest {
 	                switchNetworks(networks).
 	                build();
 	    }
-
+	  private Network createTestNetwork(String address, int CIDR){
+	        return Network.builder().
+	                networkAddress(IP.fromAddress(address)).
+	                networkName("NewNetwork").
+	                networkCidr(CIDR).
+	                build();
+	    }
+	  private Switch createSwitch(String address, int cidr, Location location){
+	        var newNetwork = createTestNetwork(address, cidr);
+	        var networks = createNetworks(newNetwork);
+	        var networkSwitch = createNetworkSwitch(location, networks);
+	        return networkSwitch;
+	    }
 }
