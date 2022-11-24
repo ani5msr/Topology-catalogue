@@ -138,4 +138,16 @@ class MainTest {
 	                Switch.getSwitchTypePredicate(Switchtype.Layer3)).get(0).getSwitchType();
 	        assertEquals(Switchtype.Layer3, actualSwitchType);
 	    }
+	    @Test
+	    public void filterNetworkByProtocol(){
+	        var testNetwork = createTestNetwork("30.0.0.0", 8);
+	        var networks = createNetworks(testNetwork);
+
+	        var expectedProtocol = Protocol.IPV4;
+	        var actualProtocol = Networkservice.filterAndRetrieveNetworks(networks,
+	                Switch.getNetworkProtocolPredicate(Protocol.IPV4)).get(0).getNetworkAddress().getProtocol();
+	        assertEquals(expectedProtocol, actualProtocol);
+	    }
+	    
+
 }
