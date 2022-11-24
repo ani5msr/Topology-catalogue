@@ -5,8 +5,10 @@ import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.valueobj.*;
 import dev.catalogue.topology.domain.specification.*;
 import lombok.Builder;
+import lombok.Getter;
 
 public class EdgeRouter extends Router {
+	@Getter
 	private Map<ID, Switch> switches;
     @Builder
 	public EdgeRouter(ID id, Vendor vendor, Model model, IP ip, Location location, Routertype routerType, Map<ID, Switch> switches) {
@@ -26,8 +28,5 @@ public class EdgeRouter extends Router {
 
         return this.switches.remove(anySwitch.id);
     }
-	public Map<ID, Switch> getSwitches() {
-		// TODO Auto-generated method stub
-		return this.switches;
-	}
+	
 }
