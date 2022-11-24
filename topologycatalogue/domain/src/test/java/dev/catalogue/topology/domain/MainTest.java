@@ -164,5 +164,19 @@ class MainTest {
 	        var actualId = Routerservice.findById(routersOfCoreRouter, expectedId).getId();
 	        assertEquals(expectedId, actualId);
 	    }
+	    @Test
+	    public void findSwitchById(){
+	        List<Switch> switches = new ArrayList<>();
+	        Map<ID, Switch> switchesOfEdgeRouter = new HashMap<>();
+	        var location = createLocation("US");
+	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
+
+	        switchesOfEdgeRouter.put(networkSwitch.getId(), networkSwitch);
+
+	        var expectedId = ID.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
+	        var actualId = Switchservice.findById(switchesOfEdgeRouter, expectedId).getId();
+	        assertEquals(expectedId, actualId);
+	    }
+
 
 }
