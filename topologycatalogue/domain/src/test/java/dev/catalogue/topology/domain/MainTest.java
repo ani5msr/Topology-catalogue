@@ -232,6 +232,25 @@ class MainTest {
 
 	        assertThrows(GenericException.class, () -> coreRouter.addRouter(edgeRouter));
 	    }
+	    @Test
+	    public void addCoreToCoreRouter(){
+	        var location = createLocation("US");
+	        var coreRouter = createCoreRouter(location, "30.0.0.1");
+	        var newCoreRouter = createCoreRouter(location, "40.0.0.1");
+
+	        coreRouter.addRouter(newCoreRouter);
+
+	        assertEquals(1,coreRouter.getRouters().size());
+	    }
+
+	    @Test
+	    public void addCoreToCoreRouter_failBecauseRoutersOfSameIp(){
+	        var location = createLocation("US");
+	        var coreRouter = createCoreRouter(location, "30.0.0.1");
+	        var newCoreRouter = createCoreRouter(location, "30.0.0.1");
+
+	        assertThrows(GenericException.class, () -> coreRouter.addRouter(newCoreRouter));
+	    }
 
 
 }
