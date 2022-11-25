@@ -212,6 +212,26 @@ class MainTest {
 
 	        assertThrows(GenericException.class, () -> edgeRouter.addSwitch(networkSwitch));
 	    }
+	    @Test
+	    public void addEdgeToCoreRouter(){
+	        var location = createLocation("US");
+	        var edgeRouter = createEdgeRouter(location,"30.0.0.1");
+	        var coreRouter = createCoreRouter(location, "40.0.0.1");
+
+	        coreRouter.addRouter(edgeRouter);
+
+	        assertEquals(1,coreRouter.getRouters().size());
+	    }
+
+	    @Test
+	    public void addEdgeToCoreRouter_failBecauseRoutersOfDifferentCountries(){
+	        var locationUS = createLocation("US");
+	        var locationJP = createLocation("JP");
+	        var edgeRouter = createEdgeRouter(locationUS,"30.0.0.1");
+	        var coreRouter = createCoreRouter(locationJP, "40.0.0.1");
+
+	        assertThrows(GenericException.class, () -> coreRouter.addRouter(edgeRouter));
+	    }
 
 
 }
