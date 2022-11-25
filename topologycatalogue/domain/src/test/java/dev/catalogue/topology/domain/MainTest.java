@@ -251,6 +251,44 @@ class MainTest {
 
 	        assertThrows(GenericException.class, () -> coreRouter.addRouter(newCoreRouter));
 	    }
+	    @Test
+	    public void removeRouter(){
+	        var location = createLocation("US");
+	        var coreRouter = createCoreRouter(location, "30.0.0.1");
+	        var edgeRouter = createEdgeRouter(location, "40.0.0.1");
+	        var expectedId = edgeRouter.getId();
+
+	        coreRouter.addRouter(edgeRouter);
+	        var actualId = coreRouter.removeRouter(edgeRouter).getId();
+
+	        assertEquals(expectedId, actualId);
+	    }
+
+	    @Test
+	    public void removeSwitch(){
+	        var location = createLocation("US");
+	        var network = createTestNetwork("30.0.0.0", 8);
+	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
+	        var edgeRouter = createEdgeRouter(location, "40.0.0.1");
+
+	        edgeRouter.addSwitch(networkSwitch);
+	        networkSwitch.removeNetworkFromSwitch(network);
+	        var expectedId = ID.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490");
+	        var actualId= edgeRouter.removeSwitch(networkSwitch).getId();
+
+	        assertEquals(expectedId, actualId);
+	    }
+
+	    @Test
+	    public void removeNetwork(){
+	        var location = createLocation("US");
+	        var network = createTestNetwork("30.0.0.0", 8);
+	        var networkSwitch = createSwitch("30.0.0.0", 8, location);
+
+	        assertEquals(1, networkSwitch.getSwitchNetworks().size());
+	        assertTrue(networkSwitch.removeNetworkFromSwitch(network));
+	        assertEquals(0, networkSwitch.getSwitchNetworks().size());
+	    }
 
 
 }
