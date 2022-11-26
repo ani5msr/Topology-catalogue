@@ -20,4 +20,23 @@ public class RouterInputPort implements RouterUseCase{
         return Routerfactory.getRouter(null,
                 vendor, model, ip, location, routerType);
     }
+    @Override
+    public Router retrieveRouter(ID id) {
+        return routerOutputPort.retrieveRouter(id);
+    }
+
+    @Override
+    public Router persistRouter(Router router) {
+        return routerOutputPort.persistRouter(router);
+    }
+    @Override
+    public Router removeRouterFromCoreRouter(Router router, CoreRouter coreRouter) {
+        var removedRouter = coreRouter.removeRouter(router);
+        return removedRouter;
+    }
+	@Override
+	public CoreRouter addRoutertoCoreRouter(Router router, CoreRouter coreRouter) {
+		 CoreRouter addedRouter =  (CoreRouter) coreRouter.addRouter(router);
+	     return addedRouter;
+	}
 }
