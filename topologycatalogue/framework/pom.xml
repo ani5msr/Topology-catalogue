@@ -8,7 +8,7 @@
   </parent>
 
   <groupId>dev.catalogue</groupId>
-  <artifactId>application</artifactId>
+  <artifactId>framework</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <properties>
@@ -42,6 +42,36 @@
   </dependencyManagement>
 
   <dependencies>
+     <dependency>
+      <groupId>dev.catalogue</groupId>
+      <artifactId>domain</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>dev.catalogue</groupId>
+  		<artifactId>application</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.200</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>org.eclipse.persistence.jpa</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.7</version>
+    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -64,16 +94,10 @@
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
- 	  <groupId>dev.catalogue</groupId>
- 	  <artifactId>domain</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
   </dependencies>
 
   <build>
-    <finalName>application</finalName>
+    <finalName>framework</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -82,18 +106,6 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M7</version>
-        <dependencies>
-        <dependency>
-                    <groupId>org.junit.platform</groupId>
-                    <artifactId>junit-platform-surefire-provider</artifactId>
-                    <version>1.1.0-M1</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter-engine</artifactId>
-                    <version>5.1.0</version>
-       </dependency>
-        </dependencies>
       </plugin>
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>

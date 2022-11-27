@@ -3,6 +3,7 @@ package dev.catalogue.topology.application;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
 class MainTest {
 
@@ -13,5 +14,12 @@ class MainTest {
     this.cut = new Main();
   }
 
-  
+  @Test
+  void firstTest() {
+    String input = "duke";
+
+    String result = cut.format(input);
+
+    assertThat(result).isEqualTo("DUKE");
+  }
 }

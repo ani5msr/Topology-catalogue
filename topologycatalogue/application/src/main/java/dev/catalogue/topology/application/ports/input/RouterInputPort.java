@@ -36,7 +36,7 @@ public class RouterInputPort implements RouterUseCase{
     }
 	@Override
 	public CoreRouter addRoutertoCoreRouter(Router router, CoreRouter coreRouter) {
-		 CoreRouter addedRouter =  (CoreRouter) coreRouter.addRouter(router);
+		 var addedRouter =  (CoreRouter) coreRouter.addRouter(router);
 	     return addedRouter;
 	}
 }

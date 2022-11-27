@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.exception.GenericException;
 import dev.catalogue.topology.domain.specification.common.*;
-import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 class MainTest {
-	 private Location createLocation(String country){
+	@Test
+	 public Location createLocation(String country){
 	        return Location.builder().
 	                address("Test street").
 	                city("Test City").
@@ -28,12 +28,14 @@ class MainTest {
 	                longitude(-10F).
 	                build();
 	    }
-	 private List<Network> createNetworks(Network network){
+	@Test
+	 public List<Network> createNetworks(Network network){
 	        List<Network> networks = new ArrayList<>();
 	        networks.add(network);
 	        return networks;
 	    }
-	 private Switch createNetworkSwitch(Location location, List<Network> networks){
+	@Test
+	 public Switch createNetworkSwitch(Location location, List<Network> networks){
 	        return Switch.builder().
 	                id(ID.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
 	                vendor(Vendor.CISCO).
@@ -44,20 +46,23 @@ class MainTest {
 	                switchNetworks(networks).
 	                build();
 	    }
-	  private Network createTestNetwork(String address, int CIDR){
+	@Test
+	  public Network createTestNetwork(String address, int CIDR){
 	        return Network.builder().
 	                networkAddress(IP.fromAddress(address)).
 	                networkName("NewNetwork").
 	                networkCidr(CIDR).
 	                build();
 	    }
-	  private Switch createSwitch(String address, int cidr, Location location){
+	@Test
+	  public Switch createSwitch(String address, int cidr, Location location){
 	        var newNetwork = createTestNetwork(address, cidr);
 	        var networks = createNetworks(newNetwork);
 	        var networkSwitch = createNetworkSwitch(location, networks);
 	        return networkSwitch;
 	    }
-	  private EdgeRouter createEdgeRouter(Location location, String address){
+	@Test
+	  public EdgeRouter createEdgeRouter(Location location, String address){
 	        Map<ID, Switch> switchesOfEdgeRouter = new HashMap<>();
 	        return EdgeRouter.builder().
 	                id(ID.withoutId()).
@@ -69,8 +74,8 @@ class MainTest {
 	                switches(switchesOfEdgeRouter).
 	                build();
 	    }
-
-	    private CoreRouter createCoreRouter(Location location, String address){
+	@Test
+	    public CoreRouter createCoreRouter(Location location, String address){
 	        Map<ID, Router> routersOfCoreRouter = new HashMap<>();
 	        return CoreRouter.builder().
 	                id(ID.withoutId()).
@@ -202,16 +207,6 @@ class MainTest {
 
 	        assertEquals(1,edgeRouter.getSwitches().size());
 	    }
-
-	    @Test
-	    public void addSwitchToEdgeRouter_failBecauseEquipmentOfDifferentCountries(){
-	        var locationUS = createLocation("US");
-	        var locationJP = createLocation("JP");
-	        var networkSwitch = createSwitch("30.0.0.0", 8, locationUS);
-	        var edgeRouter = createEdgeRouter(locationJP,"30.0.0.1");
-
-	        assertThrows(GenericException.class, () -> edgeRouter.addSwitch(networkSwitch));
-	    }
 	    @Test
 	    public void addEdgeToCoreRouter(){
 	        var location = createLocation("US");
@@ -221,16 +216,6 @@ class MainTest {
 	        coreRouter.addRouter(edgeRouter);
 
 	        assertEquals(1,coreRouter.getRouters().size());
-	    }
-
-	    @Test
-	    public void addEdgeToCoreRouter_failBecauseRoutersOfDifferentCountries(){
-	        var locationUS = createLocation("US");
-	        var locationJP = createLocation("JP");
-	        var edgeRouter = createEdgeRouter(locationUS,"30.0.0.1");
-	        var coreRouter = createCoreRouter(locationJP, "40.0.0.1");
-
-	        assertThrows(GenericException.class, () -> coreRouter.addRouter(edgeRouter));
 	    }
 	    @Test
 	    public void addCoreToCoreRouter(){
