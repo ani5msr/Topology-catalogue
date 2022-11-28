@@ -4,4 +4,5 @@ module framework {
 	requires org.junit.jupiter.api;
 	requires lombok;
 	requires jakarta.persistence;
+	requires org.eclipse.persistence.core;
 }
