@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 public class IpData {
 	 private String address;
-
+	 
 	 @Enumerated(EnumType.STRING)
 	 @Embedded
 	 private ProtocolData protocol;
