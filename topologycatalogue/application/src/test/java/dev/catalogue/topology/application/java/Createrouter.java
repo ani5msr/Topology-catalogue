@@ -2,6 +2,7 @@ package dev.catalogue.topology.application.java;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import dev.catalogue.topology.domain.valueobj.*;
+import dev.catalogue.topology.domain.entity.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 public class Createrouter extends Applicationtestdata{
