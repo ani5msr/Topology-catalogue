@@ -8,7 +8,7 @@ public abstract class Router extends Equipment{
 	@Getter
 	protected final Routertype routertype;
 	public static Predicate<Equipment> getRouterTypePredicate(Routertype routertype){
-	        return r -> ((Router)r).getRouterType().equals(routertype);
+	        return r -> ((Router)r).getRoutertype().equals(routertype);
 	    }
 	public static Predicate<Equipment> getModelPredicate(Model model){
 	        return r -> r.getModel().equals(model);
@@ -16,9 +16,6 @@ public abstract class Router extends Equipment{
     public static Predicate<Equipment> getCountryPredicate(Location location){
 	        return p -> p.location.getCountry().equals(location.getCountry());
 	    }
-	private Routertype getRouterType() {
-		return this.routertype;
-	}
 	public Router(ID id, Vendor vendor, Model model, IP ip, Location location, Routertype routerType) {
         super(id, vendor, model, ip, location);
         this.routertype = routerType;
