@@ -15,4 +15,5 @@ public interface RouterUseCase {
     Router retrieveRouter(ID id);
 
     Router persistRouter(Router router);
+	
 }
