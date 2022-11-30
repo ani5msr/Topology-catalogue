@@ -13,7 +13,7 @@ public class SwitchInputPort implements SwitchUseCase {
 	            Switchtype switchType) {
 	        return Switch
 	                .builder()
-	                .id(ID.withoutId())
+	                .switchId(ID.withoutId())
 	                .vendor(vendor)
 	                .model(model)
 	                .ip(ip)
