@@ -76,4 +76,15 @@ public class RouterMapper {
 	        });
 	        return networks;
 	    }
+    public static LocationData locationDomainToLocationData(Location location){
+        return LocationData.builder()
+                .address(location.getAddress())
+                .city(location.getCity())
+                .state(location.getState())
+                .zipcode(location.getZipCode())
+                .country(location.getCountry())
+                .latitude(location.getLatitude())
+                .longitude(location.getLongitude())
+                .build();
+    }
 }
