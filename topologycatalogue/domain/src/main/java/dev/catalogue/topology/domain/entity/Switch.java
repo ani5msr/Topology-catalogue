@@ -5,12 +5,15 @@ import dev.catalogue.topology.domain.specification.NetworkAmountSpecification;
 import dev.catalogue.topology.domain.specification.NetworkAvailabilitySpecification;
 import dev.catalogue.topology.domain.valueobj.*;
 import lombok.Builder;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.function.Predicate;
 public class Switch extends Equipment {
 	private Switchtype switchType;
 	private List<Network> switchNetworks;
+    @Setter
+    private ID routerId;
 	public Switchtype getSwitchType() {
 		return switchType;
 	}
@@ -24,11 +27,12 @@ public class Switch extends Equipment {
 		this.switchNetworks = switchNetworks;
 	}
 	@Builder
-    public Switch(ID id, Vendor vendor, Model model, IP ip, Location location, Switchtype switchType, List<Network> switchNetworks){
-        super(id, vendor, model, ip, location);
-        this.switchType = switchType;
-        this.switchNetworks = switchNetworks;
-    }
+	public Switch(ID switchId, ID routerId, Vendor vendor, Model model, IP ip, Location location, Switchtype switchType, List<Network> switchNetworks){
+	        super(switchId, vendor, model, ip, location);
+	        this.switchType = switchType;
+	        this.switchNetworks = switchNetworks;
+	        this.routerId = routerId;
+	    }
 	 public static Predicate<Network> getNetworkProtocolPredicate(Protocol protocol){
 	        return s -> s.getNetworkAddress().getProtocol().equals(protocol);
 	    }
