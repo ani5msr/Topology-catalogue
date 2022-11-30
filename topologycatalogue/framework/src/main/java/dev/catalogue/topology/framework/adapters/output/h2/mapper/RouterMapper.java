@@ -12,7 +12,7 @@ public class RouterMapper {
                 Vendor.valueOf(routerData.getRouterVendor().toString()),
                 Model.valueOf(routerData.getRouterModel().toString()),
                 IP.fromAddress(routerData.getIp().getAddress()),
-                locationDataToLocation(routerData.getRouterLocation()),
+                locationDataToLocationDomain(routerData.getRouterLocation()),
                 Routertype.valueOf(routerData.getRouterType().name()));
         if(routerData.getRouterType().equals(RoutertypeData.CORE)){
             var coreRouter = (CoreRouter) router;
@@ -24,7 +24,7 @@ public class RouterMapper {
             return edgeRouter;
         }
     }
-	public static Location locationDataToLocation(LocationData locationData){
+	public static Location locationDataToLocationDomain(LocationData locationData){
 	        return Location.builder()
 	                .address(locationData.getAddress())
 	                .city(locationData.getCity())
@@ -60,7 +60,7 @@ public class RouterMapper {
 	                vendor(Vendor.valueOf(switchData.getSwitchVendor().toString())).
 	                model(Model.valueOf(switchData.getSwitchModel().toString())).
 	                ip(IP.fromAddress(switchData.getIp().getAddress())).
-	                location(locationDataToLocation(switchData.getSwitchLocation())).
+	                location(locationDataToLocationDomain(switchData.getSwitchLocation())).
 	                switchType(Switchtype.valueOf(switchData.getSwitchType().toString())).
 	                switchNetworks(getNetworksFromData(switchData.getNetworks())).
 	                build();
