@@ -87,4 +87,20 @@ public class RouterMapper {
                 .longitude(location.getLongitude())
                 .build();
     }
+    private static List<NetworkData>  getNetworksFromDomain(List<Network> networks, UUID routerId){
+        List<NetworkData> networkDataList = new ArrayList<>();
+        if(networks!=null) {
+            networks.forEach(network -> {
+                var networkData = new NetworkData(
+                        routerId,
+                        IpData.fromAddress(network.getNetworkAddress().getIpAddress()),
+                        network.getNetworkName(),
+                        network.getNetworkCidr()
+                );
+                networkDataList.add(networkData);
+            });
+        }
+        return networkDataList;
+    }
+
 }
