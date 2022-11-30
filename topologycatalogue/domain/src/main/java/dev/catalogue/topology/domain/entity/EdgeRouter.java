@@ -6,8 +6,10 @@ import dev.catalogue.topology.domain.valueobj.*;
 import dev.catalogue.topology.domain.specification.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 public class EdgeRouter extends Router {
 	@Getter
+	@Setter
 	private Map<ID, Switch> switches;
     @Builder
 	public EdgeRouter(ID id, Vendor vendor, Model model, IP ip, Location location, Routertype routerType, Map<ID, Switch> switches) {
