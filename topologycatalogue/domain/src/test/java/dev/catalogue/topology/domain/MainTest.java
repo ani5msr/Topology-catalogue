@@ -34,10 +34,9 @@ class MainTest {
 	        networks.add(network);
 	        return networks;
 	    }
-	@Test
-	 public Switch createNetworkSwitch(Location location, List<Network> networks){
+	  private Switch createNetworkSwitch(Location location, List<Network> networks){
 	        return Switch.builder().
-	                id(ID.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
+	                switchId(ID.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
 	                vendor(Vendor.CISCO).
 	                model(Model.ABC0004).
 	                ip(IP.fromAddress("20.0.0.100")).
