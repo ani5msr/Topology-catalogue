@@ -17,5 +17,10 @@ public class ID {
 	 public static ID withoutId(){
 	 return new ID(UUID.randomUUID());
 	 }
+	public UUID getUuid() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+	 
 
 }
