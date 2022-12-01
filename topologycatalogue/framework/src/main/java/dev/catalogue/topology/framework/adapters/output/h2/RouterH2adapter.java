@@ -14,17 +14,39 @@ public class RouterH2adapter implements RouterOutputPort {
 	@PersistenceContext
 	private EntityManager em;
 	private RouterH2adapter(){
+		setUpH2Database();
     }
 	@Override
 	public Router retrieveRouter(ID id) {
-		// TODO Auto-generated method stub
-		return null;
+		 var routerData = em.getReference(RouterData.class, id.getUuid());
+	     return RouterMapper.routerDataToDomain(routerData);
 	}
 
 	@Override
 	public Router persistRouter(Router router) {
-		// TODO Auto-generated method stub
-		return null;
+		 var routerData = em.getReference(RouterData.class, ID.getUuid());
+	     em.remove(routerData);
+	     return null;
 	}
+
+    @Override
+    public Router removeRouter(ID id) {
+        var routerData = em.getReference(RouterData.class, id.getUuid());
+        em.remove(routerData);
+        return null;
+    }
+    private void setUpH2Database() {
+        EntityManagerFactory entityManagerFactory =
+                Persistence.createEntityManagerFactory("catalogue");
+        EntityManager em =
+                entityManagerFactory.createEntityManager();
+        this.em = em;
+    }
+    public static RouterH2adapter getInstance() {
+        if (adapterinstance == null) {
+            adapterinstance = new RouterH2adapter();
+        }
+        return adapterinstance;
+    }
 	
 }
