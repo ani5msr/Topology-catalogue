@@ -115,5 +115,41 @@ public class RouterMapper {
                 networks(getNetworksFromDomain(aSwitch.getSwitchNetworks(), aSwitch.getId().getUuid())).
                 build();
     }
+    public static RouterData routerDomainToData(Router router){
+        var routerData = RouterData.builder().
+                routerId(router.getId().getUuid()).
+                routerVendor(VendorData.valueOf(router.getVendor().toString())).
+                routerModel(ModelData.valueOf(router.getModel().toString())).
+                ip(IpData.fromAddress(router.getIp().getIpAddress())).
+                routerLocation(locationDomainToLocationData(router.getLocation())).
+                routerType(RoutertypeData.valueOf(router.getRoutertype().toString())).
+                build();
+        if(router.getRoutertype().equals(Routertype.Core)) {
+            var coreRouter = (CoreRouter) router;
+            routerData.setRouters(getRoutersFromDomain(coreRouter.getRouters()));
+        } else {
+            var edgeRouter = (EdgeRouter) router;
+            routerData.setSwitches(getSwitchesFromDomain(edgeRouter.getSwitches()));
+        }
+        return routerData;
+    }
+    private static List<RouterData>  getRoutersFromDomain(Map<ID, Router> routers){
+        List<RouterData> routerDataList = new ArrayList<>();
+         routers.values().stream().forEach(router -> {
+             var routerData = routerDomainToData(router);
+             routerDataList.add(routerData);
+         });
+        return routerDataList;
+    }
+    private static List<SwitchData>  getSwitchesFromDomain(Map<ID, Switch> switches){
+        List<SwitchData> switchDataList = new ArrayList<>();
+        if(switches!=null) {
+            switches.values().stream().forEach(aSwitch -> {
+                switchDataList.add(switchDomainToData(aSwitch));
+            });
+        }
+        return switchDataList;
+    }
+
 
 }
