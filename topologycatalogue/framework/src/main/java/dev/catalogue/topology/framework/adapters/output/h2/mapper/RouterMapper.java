@@ -103,4 +103,17 @@ public class RouterMapper {
         return networkDataList;
     }
 
+    public static SwitchData switchDomainToData(Switch aSwitch){
+        return  SwitchData.builder().
+                switchId(aSwitch.getId().getUuid()).
+                routerId(aSwitch.getRouterId().getUuid()).
+                switchVendor(VendorData.valueOf(aSwitch.getVendor().toString())).
+                switchModel(ModelData.valueOf(aSwitch.getModel().toString())).
+                ip(IpData.fromAddress(aSwitch.getIp().getIpAddress())).
+                switchLocation(locationDomainToLocationData(aSwitch.getLocation())).
+                switchType(SwitchtypeData.valueOf(aSwitch.getSwitchType().toString())).
+                networks(getNetworksFromDomain(aSwitch.getSwitchNetworks(), aSwitch.getId().getUuid())).
+                build();
+    }
+
 }
