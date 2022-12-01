@@ -7,9 +7,10 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 public class ID {
-	private final UUID id;
+	@Getter
+	 private static UUID uuid;
 	 private ID(UUID id){
-	 this.id = id;
+	 this.uuid = id;
 	 }
 	 public static ID withId(String id){
 	 return new ID(UUID.fromString(id));
@@ -17,10 +18,6 @@ public class ID {
 	 public static ID withoutId(){
 	 return new ID(UUID.randomUUID());
 	 }
-	public UUID getUuid() {
-		// TODO Auto-generated method stub
-		return id;
-	}
 	 
 
 }
