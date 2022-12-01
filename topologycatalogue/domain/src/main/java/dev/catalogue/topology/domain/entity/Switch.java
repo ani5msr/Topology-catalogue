@@ -5,6 +5,7 @@ import dev.catalogue.topology.domain.specification.NetworkAmountSpecification;
 import dev.catalogue.topology.domain.specification.NetworkAvailabilitySpecification;
 import dev.catalogue.topology.domain.valueobj.*;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.function.Predicate;
 public class Switch extends Equipment {
 	private Switchtype switchType;
 	private List<Network> switchNetworks;
+	@Getter
     @Setter
     private ID routerId;
 	public Switchtype getSwitchType() {
