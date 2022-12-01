@@ -46,6 +46,13 @@
       <groupId>dev.catalogue</groupId>
       <artifactId>domain</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.catalogue</groupId>
+      <artifactId>application</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>

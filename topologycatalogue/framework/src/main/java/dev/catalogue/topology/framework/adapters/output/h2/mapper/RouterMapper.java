@@ -149,7 +149,5 @@ public class RouterMapper {
             });
         }
         return switchDataList;
-    }
-
-
+    }  
 }
