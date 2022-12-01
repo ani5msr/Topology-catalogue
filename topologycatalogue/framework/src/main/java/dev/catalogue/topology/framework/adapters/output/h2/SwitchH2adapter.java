@@ -24,7 +24,7 @@ public class SwitchH2adapter implements SwitchOutputPort {
 	}
 	 private void setUpH2Database() {
 	        EntityManagerFactory entityManagerFactory =
-	                Persistence.createEntityManagerFactory("inventory");
+	                Persistence.createEntityManagerFactory("catalogue");
 	        EntityManager em =
 	                entityManagerFactory.createEntityManager();
 	        this.em = em;
