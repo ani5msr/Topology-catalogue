@@ -3,12 +3,18 @@ package dev.catalogue.topology.application.ports.input;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.valueobj.*;
 import dev.catalogue.topology.application.ports.output.*;
+import dev.catalogue.topology.application.status.RouterInfo;
 import dev.catalogue.topology.domain.entity.factory.*;
 import dev.catalogue.topology.application.usecases.*;
 import lombok.NoArgsConstructor;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.*;
+
 
 @NoArgsConstructor
 public class RouterInputPort implements RouterUseCase{
+	
+	@Inject
 	RouterOutputPort routerOutputPort;
 
     @Override
@@ -39,4 +45,9 @@ public class RouterInputPort implements RouterUseCase{
 		 var addedRouter =  (CoreRouter) coreRouter.addRouter(router);
 	     return addedRouter;
 	}
+	@Override
+    public String getRouterStatus() {
+        var routerInfo = new RouterInfo();
+        return routerInfo.getRouterStatus();
+    }
 }
