@@ -6,4 +6,5 @@ module application {
     requires transitive domain;
     requires static lombok;
 	requires org.junit.jupiter.api;
+	requires javaee.web.api;
 }
