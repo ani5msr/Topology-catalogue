@@ -11,4 +11,6 @@ module framework {
 	requires java.transaction;
 	requires java.sql;
 	requires jackson.annotations;
+	requires com.fasterxml.jackson.databind;
+	requires com.fasterxml.jackson.core;
 }
