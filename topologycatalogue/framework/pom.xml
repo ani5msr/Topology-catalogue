@@ -96,6 +96,32 @@
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
+     <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-reactive-mysql-client</artifactId>
+      <version>2.5.4.Final</version>
+      </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-reactive-panache</artifactId>
+      <version>2.5.4.Final</version>
+      </dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>2.3.3</version>
+      </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+      <version>2.5.4.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>5.3.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -104,6 +130,16 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
+         <configuration>
+        <annotationProcessorPaths>
+            <!-- Your existing annotation processor(s)... -->
+            <path>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-panache-common</artifactId>
+                <version>2.5.4.Final</version>
+            </path>
+        </annotationProcessorPaths>
+      </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
