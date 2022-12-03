@@ -10,4 +10,5 @@ module framework {
 	requires org.eclipse.persistence.core;
 	requires java.transaction;
 	requires java.sql;
+	requires jackson.annotations;
 }
