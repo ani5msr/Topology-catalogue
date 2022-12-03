@@ -4,7 +4,6 @@ import dev.catalogue.topology.application.ports.output.RouterOutputPort;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.valueobj.*;
 public interface RouterUseCase {
-	 void setOutputPort(RouterOutputPort routerOutputPort);
 	Router createRouter(Vendor vendor,
             Model model,
             IP ip,
