@@ -14,7 +14,7 @@ public class SwitchH2adapter implements SwitchOutputPort {
 	@PersistenceContext
     private EntityManager em;
 	
-	 private SwitchH2adapter(){
+    public SwitchH2adapter(){
 	        setUpH2Database();
 	    }
 	@Override

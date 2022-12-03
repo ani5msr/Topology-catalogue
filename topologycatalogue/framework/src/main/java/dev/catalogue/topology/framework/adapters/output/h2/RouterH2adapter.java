@@ -13,7 +13,7 @@ public class RouterH2adapter implements RouterOutputPort {
 	private static RouterH2adapter adapterinstance;
 	@PersistenceContext
 	private EntityManager em;
-	private RouterH2adapter(){
+	public RouterH2adapter(){
 		setUpH2Database();
     }
 	@Override
