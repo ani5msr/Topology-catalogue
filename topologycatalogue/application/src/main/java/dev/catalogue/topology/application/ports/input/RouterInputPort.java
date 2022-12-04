@@ -28,7 +28,10 @@ public class RouterInputPort implements RouterUseCase{
     public Router retrieveRouter(ID id) {
         return routerOutputPort.retrieveRouter(id);
     }
-
+    @Override
+    public Router removeRouter(ID id) {
+        return routerOutputPort.removeRouter(id);
+    }
     @Override
     public Router persistRouter(Router router) {
         return routerOutputPort.persistRouter(router);

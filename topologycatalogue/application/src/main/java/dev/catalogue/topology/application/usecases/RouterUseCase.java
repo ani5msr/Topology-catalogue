@@ -10,6 +10,7 @@ public interface RouterUseCase {
             Location location,
             Routertype routerType);
 	CoreRouter addRoutertoCoreRouter(Router router, CoreRouter coreRouter);
+	Router removeRouter(ID id);
 	Router removeRouterFromCoreRouter(
             Router router, CoreRouter coreRouter);
 
