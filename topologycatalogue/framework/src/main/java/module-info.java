@@ -15,4 +15,7 @@ module framework {
 	requires com.fasterxml.jackson.core;
 	requires java.ws.rs;
 	requires jakarta.inject.api;
+	requires jakarta.enterprise.cdi.api;
+	requires io.smallrye.mutiny;
+	requires microprofile.openapi.api;
 }

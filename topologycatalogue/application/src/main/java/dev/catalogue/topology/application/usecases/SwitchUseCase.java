@@ -11,7 +11,9 @@ public interface SwitchUseCase {
 	            Switchtype switchType
 	            );
 	 EdgeRouter addSwitchToEdgeRouter(Switch networkSwitch, EdgeRouter edgeRouter);
-
+     
+	 Switch retrieveSwitch(ID id);
+	 
 	 EdgeRouter removeSwitchFromEdgeRouter(Switch networkSwitch, EdgeRouter edgeRouter);
 
 }
