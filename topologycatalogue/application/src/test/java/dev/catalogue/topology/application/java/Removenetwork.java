@@ -6,6 +6,8 @@ import io.cucumber.java.en.Then;
 
 import java.util.function.Predicate;
 
+import javax.inject.Inject;
+
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -14,6 +16,9 @@ import dev.catalogue.topology.domain.service.Networkservice;
 import dev.catalogue.topology.domain.valueobj.*;
 import dev.catalogue.topology.application.usecases.*;
 public class Removenetwork extends Applicationtestdata{
+	 @Inject
+	 NetworkUseCase networkManagementUseCase;
+
 	Predicate <Network> pred;
 	public Removenetwork(){
         loadData();
@@ -30,8 +35,10 @@ public class Removenetwork extends Applicationtestdata{
 	    }
 	  @Then("I remove the network from the switch")
 	    public void i_remove_the_network_from_the_switch(){
-	        this.networkUseCase.removeNetworkFromSwitch(network, networkSwitch);
-	        network = Networkservice.findNetwork(networks, pred);
-	        assertNull(network);
-	    }
+		  this.networkManagementUseCase.
+          removeNetworkFromSwitch("Marketing", networkSwitch);
+  network = Networkservice.
+          findNetwork(networks, pred);
+  assertNull(network);  
+  }
 }
