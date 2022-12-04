@@ -46,4 +46,18 @@ public class NetworkAdapter {
 	                .onItem()
 	                .transform(Response.ResponseBuilder::build);
 	    }
+	 @Transactional
+	    @DELETE
+	    @Path("/{networkName}/from/{switchId}")
+	    @Operation(operationId = "removeNetworkFromSwitch", description = "Remove network from a switch")
+	    public Uni<Response> removeNetworkFromSwitch(@PathParam("networkName") String networkName, @PathParam("switchId") String switchId) {
+	        Switch networkSwitch = switchUseCase.retrieveSwitch(ID.withId(switchId));
+
+	        return Uni.createFrom()
+	                .item(networkUseCase.removeNetworkFromSwitch(networkName, networkSwitch))
+	                .onItem()
+	                .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
+	                .onItem()
+	                .transform(Response.ResponseBuilder::build);
+	    }
 }
