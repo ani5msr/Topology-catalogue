@@ -18,6 +18,9 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import dev.catalogue.topology.application.usecases.RouterUseCase;
 import dev.catalogue.topology.domain.valueobj.ID;
+import dev.catalogue.topology.domain.valueobj.IP;
+import dev.catalogue.topology.framework.adapters.input.rest.request.router.RouterAdd;
+import dev.catalogue.topology.framework.adapters.input.rest.request.router.RouterRequest;
 
 @ApplicationScoped
 @Path("/router")
@@ -51,5 +54,28 @@ public class RouterAdapter {
                 .onItem()
                 .transform(Response.ResponseBuilder::build);
     }
+	@Transactional
+    @POST
+    @Path("/")
+    @Operation(operationId = "createRouter", description = "Create and persist a new router on the network inventory")
+    public Uni<Response> createRouter(RouterRequest Routerreq) {
+        var router = routerUseCase.createRouter(
+                null,
+                Routerreq.getVendor(),
+                Routerreq.getModel(),
+                IP.fromAddress(Routerreq.getIp()),
+                Routerreq.getLocation(),
+                Routerreq.getRouterType()
+
+        );
+
+        return Uni.createFrom()
+                .item(routerUseCase.persistRouter(router))
+                .onItem()
+                .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
+                .onItem()
+                .transform(Response.ResponseBuilder::build);
+    }
+
 
 }
