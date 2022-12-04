@@ -15,15 +15,21 @@ public class RouterInputPort implements RouterUseCase{
 	@Inject
 	RouterOutputPort routerOutputPort;
 
-    @Override
-    public Router createRouter(Vendor vendor,
-                               Model model,
-                               IP ip,
-                               Location location,
-                               Routertype routerType) {
-        return Routerfactory.getRouter(null,
-                vendor, model, ip, location, routerType);
-    }
+	 @Override
+	    public Router createRouter(ID id,
+	                               Vendor vendor,
+	                               Model model,
+	                               IP ip,
+	                               Location location,
+	                               Routertype routerType) {
+	        return Routerfactory.getRouter(null,
+	                vendor,
+	                model,
+	                ip,
+	                location,
+	                routerType
+	        );
+	    }
     @Override
     public Router retrieveRouter(ID id) {
         return routerOutputPort.retrieveRouter(id);
