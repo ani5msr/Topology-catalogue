@@ -13,4 +13,6 @@ module framework {
 	requires jackson.annotations;
 	requires com.fasterxml.jackson.databind;
 	requires com.fasterxml.jackson.core;
+	requires java.ws.rs;
+	requires jakarta.inject.api;
 }
