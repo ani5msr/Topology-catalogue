@@ -1,9 +1,14 @@
 package dev.catalogue.topology.application.ports.input;
 
+import javax.inject.Inject;
+
+import dev.catalogue.topology.application.ports.output.SwitchOutputPort;
 import dev.catalogue.topology.application.usecases.*;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.valueobj.*;
 public class SwitchInputPort implements SwitchUseCase {
+	@Inject
+    SwitchOutputPort switchOutputPort;
 	 @Override
 	    public Switch createSwitch(
 	            Vendor vendor,
@@ -30,5 +35,8 @@ public class SwitchInputPort implements SwitchUseCase {
 	    public EdgeRouter removeSwitchFromEdgeRouter(Switch networkSwitch, EdgeRouter edgeRouter) {
 	        edgeRouter.removeSwitch(networkSwitch);
 	        return edgeRouter;
+	    }
+	 public Switch retrieveSwitch(ID id) {
+	        return switchOutputPort.retrieveSwitch(id);
 	    }
 }
