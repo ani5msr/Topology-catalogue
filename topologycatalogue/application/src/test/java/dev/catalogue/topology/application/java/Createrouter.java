@@ -2,16 +2,23 @@ package dev.catalogue.topology.application.java;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import dev.catalogue.topology.domain.valueobj.*;
+import dev.catalogue.topology.application.usecases.RouterUseCase;
 import dev.catalogue.topology.domain.entity.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import javax.inject.Inject;
 public class Createrouter extends Applicationtestdata{
+
+    @Inject
+    RouterUseCase routerUseCase;
     public Createrouter(){
         loadData();
     }
     @Given("I provide all required data to create a core router")
     public void create_core_router(){
         router = this.routerUseCase.createRouter(
+                null,
                 Vendor.CISCO,
                 Model.ABC0001,
                 IP.fromAddress("20.0.0.1"),
@@ -28,6 +35,7 @@ public class Createrouter extends Applicationtestdata{
     @Given("I provide all required data to create an edge router")
     public void create_edge_router(){
         router = this.routerUseCase.createRouter(
+                null,
                 Vendor.HP,
                 Model.ABC0004,
                 IP.fromAddress("30.0.0.1"),
