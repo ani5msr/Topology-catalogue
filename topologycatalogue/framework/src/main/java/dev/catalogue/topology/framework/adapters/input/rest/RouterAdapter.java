@@ -39,5 +39,17 @@ public class RouterAdapter {
                 .transform(Response.ResponseBuilder::build);
     }
 	
-	
+	@Transactional
+    @DELETE
+    @Path("/{id}")
+    @Operation(operationId = "removeRouter", description = "Remove a router from the network inventory")
+    public Uni<Response> removeRouter(@PathParam("id") ID id) {
+        return Uni.createFrom()
+                .item(routerUseCase.removeRouter(id))
+                .onItem()
+                .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
+                .onItem()
+                .transform(Response.ResponseBuilder::build);
+    }
+
 }
