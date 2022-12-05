@@ -1,4 +1,4 @@
-package dev.catalogue.topology.framework.adapters.output.h2.data;
+package dev.catalogue.topology.framework.adapters.output.h2.mysql.data;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,24 +15,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table(name = "networks")
-@MappedSuperclass
-@Converter(name="uuidConverter", converterClass= UUIDtypeconverter.class)
-public class NetworkData implements Serializable {
+public class NetworkData {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    @ManyToOne
+    @JoinColumn(name="switch_id")
+    private SwitchData switchData;
 
-	@Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="network_id")
     private int id;
 
-    @Column(name="switch_id")
-    @Convert("uuidConverter")
-    private UUID switchId;
-
-    @Embedded
     @AttributeOverrides({
             @AttributeOverride(
                     name = "address",
@@ -44,14 +37,14 @@ public class NetworkData implements Serializable {
                             name = "network_protocol")),
     })
     IpData ip;
+
     @Column(name="network_name")
     String name;
 
     @Column(name="network_cidr")
     Integer cidr;
 
-    public NetworkData(UUID switchId, IpData ip, String name, Integer cidr) {
-        this.switchId = switchId;
+    public NetworkData(IpData ip, String name, Integer cidr) {
         this.ip = ip;
         this.name = name;
         this.cidr = cidr;

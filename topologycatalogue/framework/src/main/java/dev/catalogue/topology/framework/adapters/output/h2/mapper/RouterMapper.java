@@ -4,7 +4,15 @@ import dev.catalogue.topology.domain.valueobj.*;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.entity.factory.*;
 import java.util.*;
-import dev.catalogue.topology.framework.adapters.output.h2.data.*;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.IpData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.LocationData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.ModelData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.NetworkData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.RouterData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.RoutertypeData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.SwitchData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.SwitchtypeData;
+import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.VendorData;
 public class RouterMapper {
 	public static Router routerDataToDomain(RouterData routerData){
         var router = Routerfactory.getRouter(
@@ -35,7 +43,7 @@ public class RouterMapper {
 	                .longitude(locationData.getLongitude())
 	                .build();
 	    }
-	private static Map<ID, Router> getRoutersFromData(List<RouterData> routerDataList){
+	private static Map<ID, Router> getRoutersFromData(Set<RouterData> routerDataList){
         Map<ID,Router> routerMap = new HashMap<>();
         for (RouterData routerData : routerDataList) {
             routerMap.put(
@@ -65,7 +73,7 @@ public class RouterMapper {
 	                switchNetworks(getNetworksFromData(switchData.getNetworks())).
 	                build();
 	    }
-    private static List<Network> getNetworksFromData(List<NetworkData> networkData){
+    private static List<Network> getNetworksFromData(Set<NetworkData> networkData){
 	        List<Network> networks = new ArrayList<>();
 	        networkData.forEach(data ->{
 	            var network = new Network(
@@ -87,12 +95,11 @@ public class RouterMapper {
                 .longitude(location.getLongitude())
                 .build();
     }
-    private static List<NetworkData>  getNetworksFromDomain(List<Network> networks, UUID routerId){
-        List<NetworkData> networkDataList = new ArrayList<>();
+    private static Set<NetworkData>  getNetworksFromDomain(List<Network> networks, UUID routerId){
+        Set<NetworkData> networkDataList = new HashSet<>();
         if(networks!=null) {
             networks.forEach(network -> {
                 var networkData = new NetworkData(
-                        routerId,
                         IpData.fromAddress(network.getNetworkAddress().getIpAddress()),
                         network.getNetworkName(),
                         network.getNetworkCidr()
@@ -133,8 +140,8 @@ public class RouterMapper {
         }
         return routerData;
     }
-    private static List<RouterData>  getRoutersFromDomain(Map<ID, Router> routers){
-        List<RouterData> routerDataList = new ArrayList<>();
+    private static Set<RouterData>  getRoutersFromDomain(Map<ID, Router> routers){
+        Set<RouterData> routerDataList = new HashSet<>();
          routers.values().stream().forEach(router -> {
              var routerData = routerDomainToData(router);
              routerDataList.add(routerData);

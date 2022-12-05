@@ -1,4 +1,4 @@
-package dev.catalogue.topology.framework.adapters.output.h2.data;
+package dev.catalogue.topology.framework.adapters.output.h2.mysql.data;
 
 import jakarta.persistence.*;
 
