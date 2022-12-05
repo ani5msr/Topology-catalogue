@@ -70,5 +70,25 @@ public class SwitchAdapter {
 	                .onItem()
 	                .transform(Response.ResponseBuilder::build);
 	    }
+        
+	    @Transactional
+	    @DELETE
+	    @Path("/{switchId}/from/{edgeRouterId}")
+	    @Operation(operationId = "removeSwitch", description = "Remove a switch from an edge router")
+	    public Uni<Response> removeSwitchFromEdgeRouter(
+	            @PathParam("switchId") String switchId, @PathParam("edgeRouterId") String edgeRouterId) {
+	        EdgeRouter edgeRouter = (EdgeRouter) routerUseCase
+	                .retrieveRouter(ID.withId(edgeRouterId));
+	        Switch networkSwitch = switchUseCase.retrieveSwitch(ID.withId(switchId));
 
+	        Router router = switchUseCase
+	                .removeSwitchFromEdgeRouter(networkSwitch, edgeRouter);
+
+	        return Uni.createFrom()
+	                .item((EdgeRouter) routerUseCase.persistRouter(router))
+	                .onItem()
+	                .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
+	                .onItem()
+	                .transform(Response.ResponseBuilder::build);
+	    }
 }
