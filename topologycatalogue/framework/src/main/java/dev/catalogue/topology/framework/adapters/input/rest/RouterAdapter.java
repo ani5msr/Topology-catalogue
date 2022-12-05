@@ -97,5 +97,24 @@ public class RouterAdapter {
                 .onItem()
                 .transform(Response.ResponseBuilder::build);
     }
+	 @Transactional
+	    @DELETE
+	    @Path("/{routerId}/from/{coreRouterId}")
+	    @Operation(operationId = "removeRouterFromCoreRouter", description = "Remove a router from a core router")
+	    public Uni<Response> removeRouterFromCoreRouter(
+	            @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {
+	        Router router = routerUseCase
+	                .retrieveRouter(ID.withId(routerId));
+	        CoreRouter coreRouter = (CoreRouter) routerUseCase
+	                .retrieveRouter(ID.withId(coreRouterId));
+
+	        return Uni.createFrom()
+	                .item(routerUseCase.
+	                        removeRouterFromCoreRouter(router, coreRouter))
+	                .onItem()
+	                .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
+	                .onItem()
+	                .transform(Response.ResponseBuilder::build);
+	    }
 
 }
