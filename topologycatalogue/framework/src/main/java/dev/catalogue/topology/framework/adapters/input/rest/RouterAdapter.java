@@ -17,6 +17,8 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import dev.catalogue.topology.application.usecases.RouterUseCase;
+import dev.catalogue.topology.domain.entity.CoreRouter;
+import dev.catalogue.topology.domain.entity.Router;
 import dev.catalogue.topology.domain.valueobj.ID;
 import dev.catalogue.topology.domain.valueobj.IP;
 import dev.catalogue.topology.framework.adapters.input.rest.request.router.RouterAdd;
@@ -76,6 +78,24 @@ public class RouterAdapter {
                 .onItem()
                 .transform(Response.ResponseBuilder::build);
     }
+	@Transactional
+    @POST
+    @Path("/{routerId}/to/{coreRouterId}")
+    @Operation(operationId = "addRouterToCoreRouter", description = "Add a router into a core router")
+    public Uni<Response> addRouterToCoreRouter(
+            @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {
+        Router router = routerUseCase
+                .retrieveRouter(ID.withId(routerId));
+        CoreRouter coreRouter = (CoreRouter) routerUseCase
+                .retrieveRouter(ID.withId(coreRouterId));
 
+        return Uni.createFrom()
+                .item(routerUseCase.
+                        addRoutertoCoreRouter(router, coreRouter))
+                .onItem()
+                .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
+                .onItem()
+                .transform(Response.ResponseBuilder::build);
+    }
 
 }
