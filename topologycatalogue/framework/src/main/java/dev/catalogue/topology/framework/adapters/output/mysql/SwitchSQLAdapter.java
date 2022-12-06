@@ -8,6 +8,7 @@ import dev.catalogue.topology.domain.entity.Switch;
 import dev.catalogue.topology.domain.valueobj.ID;
 import dev.catalogue.topology.framework.adapters.output.mysql.mappers.RouterMapper;
 import dev.catalogue.topology.framework.adapters.output.mysql.respository.SwitchRepository;
+@ApplicationScoped
 public class SwitchSQLAdapter implements SwitchOutputPort {
 	@Inject
     SwitchRepository SwitchRepo;

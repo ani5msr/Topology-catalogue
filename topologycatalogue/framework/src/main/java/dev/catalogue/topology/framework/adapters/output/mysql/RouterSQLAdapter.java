@@ -9,6 +9,7 @@ import io.quarkus.hibernate.reactive.panache.Panache;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+@ApplicationScoped
 public class RouterSQLAdapter implements RouterOutputPort {
         @Inject
         RouterRepository RouterRepo;
