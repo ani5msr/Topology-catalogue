@@ -1,18 +1,19 @@
-package dev.catalogue.topology.framework.adapters.output.h2.mapper;
+package dev.catalogue.topology.framework.adapters.output.mysql.mappers;
 
 import dev.catalogue.topology.domain.valueobj.*;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.entity.factory.*;
 import java.util.*;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.IpData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.LocationData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.ModelData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.NetworkData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.RouterData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.RoutertypeData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.SwitchData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.SwitchtypeData;
-import dev.catalogue.topology.framework.adapters.output.h2.mysql.data.VendorData;
+
+import dev.catalogue.topology.framework.adapters.output.mysql.data.IpData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.LocationData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.ModelData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.NetworkData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.RouterData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.RoutertypeData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.SwitchData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.SwitchtypeData;
+import dev.catalogue.topology.framework.adapters.output.mysql.data.VendorData;
 public class RouterMapper {
 	public static Router routerDataToDomain(RouterData routerData){
         var router = Routerfactory.getRouter(

@@ -1,4 +1,4 @@
-package dev.catalogue.topology.framework.adapters.output.h2.mysql.data;
+package dev.catalogue.topology.framework.adapters.output.mysql.data;
 
 import org.eclipse.persistence.internal.helper.DatabaseField;
 import org.eclipse.persistence.mappings.DatabaseMapping;
