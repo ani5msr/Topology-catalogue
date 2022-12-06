@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.*;
 
+@ApplicationScoped
 public class RouterInputPort implements RouterUseCase{
 	
 	@Inject

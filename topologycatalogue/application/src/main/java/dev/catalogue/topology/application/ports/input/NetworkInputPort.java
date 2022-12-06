@@ -1,6 +1,7 @@
 package dev.catalogue.topology.application.ports.input;
 import java.util.function.Predicate;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import dev.catalogue.topology.application.ports.output.RouterOutputPort;
@@ -11,6 +12,7 @@ import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.service.Networkservice;
 import lombok.NoArgsConstructor;
 
+@ApplicationScoped
 @NoArgsConstructor
 public class NetworkInputPort implements NetworkUseCase{
 	@Inject

@@ -1,11 +1,14 @@
 package dev.catalogue.topology.application.ports.input;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+
 
 import dev.catalogue.topology.application.ports.output.SwitchOutputPort;
 import dev.catalogue.topology.application.usecases.*;
 import dev.catalogue.topology.domain.entity.*;
 import dev.catalogue.topology.domain.valueobj.*;
+@ApplicationScoped
 public class SwitchInputPort implements SwitchUseCase {
 	@Inject
     SwitchOutputPort switchOutputPort;
