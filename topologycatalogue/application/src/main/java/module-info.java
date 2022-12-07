@@ -6,8 +6,8 @@ module application {
     requires transitive domain;
     requires static lombok;
 	requires org.junit.jupiter.api;
-	requires javaee.web.api;
-	
+	requires jakarta.enterprise.cdi.api;
+	requires jakarta.inject.api;
 	provides dev.catalogue.topology.application.usecases.RouterUseCase with 
 	dev.catalogue.topology.application.ports.input.RouterInputPort;
 	provides dev.catalogue.topology.application.usecases.SwitchUseCase with

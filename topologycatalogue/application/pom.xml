@@ -96,17 +96,73 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
      </dependency>
+   
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-reactive</artifactId>
+              <version>2.15.0.CR1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+              <version>2.15.0.CR1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-junit5</artifactId>
+              <version>2.15.0.CR1</version>
+      <scope>test</scope>
+    </dependency>
      <dependency>
-        <groupId>javax</groupId>
-        <artifactId>javaee-web-api</artifactId>
-        <version>7.0</version>
-        <scope>provided</scope>
+      <groupId>io.quarkiverse.cucumber</groupId>
+      <artifactId>quarkus-cucumber</artifactId>
+      <version>0.6.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <finalName>application</finalName>
     <plugins>
+     <plugin>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-maven-plugin</artifactId>
+        <version>2.15.0.CR1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-code</goal>
+              <goal>generate-code-tests</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jboss.jandex</groupId>
+        <artifactId>jandex-maven-plugin</artifactId>
+        <version>1.0.7</version>
+        <executions>
+          <execution>
+            <id>make-index</id>
+            <goals>
+              <goal>jandex</goal>
+            </goals>
+            <phase>
+              compile
+            </phase>
+          </execution>
+        </executions>
+        <configuration>
+          <fileSets>
+            <fileSet>
+              <directory>${project.build.directory}/generated-classes/foo</directory>
+            </fileSet>
+            <fileSet>
+              <directory>${project.build.directory}/generated-classes/bar</directory>
+            </fileSet>
+          </fileSets>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
