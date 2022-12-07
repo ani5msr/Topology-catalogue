@@ -1,13 +1,17 @@
 package dev.catalogue.topology.application.java;
 import io.cucumber.java.en.And;
+import javax.inject.Inject;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 import static org.junit.Assert.*;
 
+import dev.catalogue.topology.application.usecases.SwitchUseCase;
 import dev.catalogue.topology.domain.entity.Switch;
 import dev.catalogue.topology.domain.valueobj.ID;
 public class Removeswitch extends Applicationtestdata{
+	@Inject
+	SwitchUseCase switchUseCase;
 	ID id;
 	Switch switchToBeRemoved;
 	public Removeswitch() {

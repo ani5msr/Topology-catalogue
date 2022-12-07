@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Applicationtestdata {
-	    protected RouterUseCase routerUseCase;
-	    protected SwitchUseCase switchUseCase;
-	    protected NetworkUseCase networkUseCase;
 	    protected Router router;
 	    protected List<Router> routers = new ArrayList<>();
 	    protected List<Switch> switches = new ArrayList<>();
@@ -28,9 +25,6 @@ public class Applicationtestdata {
 	    protected Location locationA;
 	    protected Location locationB;
 	    public void loadData(){
-	        this.routerUseCase = new RouterInputPort();
-	        this.switchUseCase = new SwitchInputPort();
-	        this.networkUseCase = new NetworkInputPort();
 	        this.locationA = Location.builder().
 	                address("Av Republica Argentina 3109").
 	                city("Curitiba").

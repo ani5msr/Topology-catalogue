@@ -1,10 +1,12 @@
 package dev.catalogue.topology.application.java;
 import io.cucumber.java.en.Given;
+import javax.inject.Inject;
 import io.cucumber.java.en.Then;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import dev.catalogue.topology.application.usecases.SwitchUseCase;
 import dev.catalogue.topology.domain.entity.Switch;
 import dev.catalogue.topology.domain.valueobj.ID;
 import dev.catalogue.topology.domain.valueobj.IP;
@@ -12,7 +14,9 @@ import dev.catalogue.topology.domain.valueobj.Model;
 import dev.catalogue.topology.domain.valueobj.Switchtype;
 import dev.catalogue.topology.domain.valueobj.Vendor;
 public class Addswitch extends Applicationtestdata{
-	public Addswitch(){
+	@Inject
+	SwitchUseCase switchUseCase;
+	public Addswitch() {
         loadData();
     }
 	 @Given("I provide a switch")

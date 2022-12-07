@@ -1,10 +1,14 @@
 package dev.catalogue.topology.application.java;
 import io.cucumber.java.en.Given;
+import javax.inject.Inject;
 import io.cucumber.java.en.Then;
+import dev.catalogue.topology.application.usecases.NetworkUseCase;
 import dev.catalogue.topology.domain.valueobj.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 public class Createnetwork extends Applicationtestdata{
+	@Inject
+	NetworkUseCase networkUseCase;
 	public Createnetwork(){
         loadData();
     }

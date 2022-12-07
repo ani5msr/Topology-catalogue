@@ -7,12 +7,15 @@ import dev.catalogue.topology.domain.valueobj.Routertype;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import dev.catalogue.topology.application.usecases.RouterUseCase;
 import dev.catalogue.topology.domain.entity.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-
+import javax.inject.Inject;
 public class Removerouter extends Applicationtestdata{
+	@Inject 
+	RouterUseCase routerUseCase;
 	CoreRouter coreRouterToBeRemoved;
 
     public Removerouter(){

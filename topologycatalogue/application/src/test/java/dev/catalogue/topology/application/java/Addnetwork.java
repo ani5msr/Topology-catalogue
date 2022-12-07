@@ -1,6 +1,7 @@
 package dev.catalogue.topology.application.java;
 
 import dev.catalogue.topology.application.usecases.*;
+import javax.inject.Inject;
 import dev.catalogue.topology.domain.service.Networkservice;
 import dev.catalogue.topology.domain.valueobj.IP;
 import dev.catalogue.topology.domain.valueobj.Network;
@@ -10,6 +11,8 @@ import io.cucumber.java.en.Then;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 public class Addnetwork extends Applicationtestdata {
+	@Inject
+	NetworkUseCase networkUseCase;
     public Addnetwork(){
         loadData();
     }
