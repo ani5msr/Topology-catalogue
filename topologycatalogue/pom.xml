@@ -78,13 +78,17 @@
     
     
     <testcontainers.version>1.15.3</testcontainers.version>
-                    
+    <quarkus-plugin.version>2.2.1.Final</quarkus-plugin.version>
+    <quarkus.package.type>uber-jar</quarkus.package.type>
+    <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
+    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <quarkus.platform.version>2.2.1.Final</quarkus.platform.version>
+              
     
     
     <junit-jupiter.version>5.7.2</junit-jupiter.version>
                     
     
-    <quarkus.package.type>uber-jar</quarkus.package.type>
     <mockito.version>3.10.0</mockito.version>
                 
   	
@@ -95,7 +99,13 @@
   
   
   <dependencies>
-                    
+     <dependency>
+        <groupId>${quarkus.platform.group-id}</groupId>
+        <artifactId>${quarkus.platform.artifact-id}</artifactId>
+        <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>         
     
     
     <dependency>
@@ -174,7 +184,7 @@
              <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
-        <version>2.15.0.CR1</version>
+         <version>${quarkus-plugin.version}</version>
         <executions>
           <execution>
             <goals>

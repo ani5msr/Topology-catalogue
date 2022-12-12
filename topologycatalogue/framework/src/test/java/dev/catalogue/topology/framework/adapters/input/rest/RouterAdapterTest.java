@@ -1,4 +1,4 @@
-package dev.catalogue.topology.framework;
+package dev.catalogue.topology.framework.adapters.input.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;

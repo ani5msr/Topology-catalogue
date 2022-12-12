@@ -1,4 +1,4 @@
-package dev.catalogue.topology.framework;
+package dev.catalogue.topology.framework.adapters.input.rest;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,9 +9,10 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import static dev.catalogue.topology.framework.RouterAdapterTest.createLocation;
+
 import dev.catalogue.topology.framework.adapters.input.rest.request.*;
 import static dev.catalogue.topology.framework.adapters.input.rest.deserializers.SwitchDeserializer.getSwitchDeserialized;
+import static dev.catalogue.topology.framework.adapters.input.rest.RouterAdapterTest.createLocation;
 import static dev.catalogue.topology.framework.adapters.input.rest.deserializers.RouterDeserializer.getRouterDeserialized;
 import dev.catalogue.topology.domain.valueobj.*;
 import dev.catalogue.topology.domain.entity.*;
