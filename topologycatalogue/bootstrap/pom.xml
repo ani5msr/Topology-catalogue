@@ -18,6 +18,11 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <testcontainers.version>1.17.3</testcontainers.version>
     <junit-jupiter.version>5.9.0</junit-jupiter.version>
+     <quarkus-plugin.version>2.2.1.Final</quarkus-plugin.version>
+    <quarkus.package.type>uber-jar</quarkus.package.type>
+    <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
+    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <quarkus.platform.version>2.2.1.Final</quarkus.platform.version>
     <mockito.version>4.8.0</mockito.version>
     <assertj.version>3.23.1</assertj.version>
   </properties>
@@ -85,12 +90,12 @@
         <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-reactive-mysql-client-deployment</artifactId>
-      <version>2.15.0.CR1</version>
+      <version>${quarkus.platform.version}</version>
       </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-reactive-panache</artifactId>
-      <version>2.15.0.CR1</version>
+      <version>${quarkus.platform.version}</version>
       </dependency>
       <dependency>
       <groupId>jakarta.persistence</groupId>
@@ -100,17 +105,17 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-health</artifactId>
-       <version>2.15.0.CR1</version>
+      <version>${quarkus.platform.version}</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-config-yaml</artifactId>
-       <version>2.15.0.CR1</version>
+       <version>${quarkus.platform.version}</version>
     </dependency>
     <dependency>
  <groupId>io.quarkus</groupId>
  <artifactId>quarkus-universe-bom</artifactId>
- <version>2.15.0.CR1</version>
+ <version>${quarkus.platform.version}</version>
  <type>pom</type>
  <scope>import</scope>
  </dependency>
@@ -122,7 +127,7 @@
     <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
-        <version>2.15.0.CR1</version>
+         <version>${quarkus-plugin.version}</version>
          <extensions>true</extensions>
         <executions>
           <execution>
