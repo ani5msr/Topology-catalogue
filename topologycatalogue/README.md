@@ -8,3 +8,12 @@ of arhcitecture, it is divided into three maven modules .
 ### Domain
 ### Application
 ### Framework
+## Domain
+It contains all the abstraction of the real world scenario into a structure of Entities and corressponding value objects assigned
+to it. It represents all the resources used by the router as a system of classes and interfaces and wraps a topology into networks
+routers and switches and uses services to fetch data between different entities, and also filter through different specs of the
+router or network.
+### Testing
+> mvn clean test
+Tests are done using JUnit and tests using different scenarios of creating edge and core routers and filtering by specifications
+## Application
