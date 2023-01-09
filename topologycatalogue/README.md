@@ -33,7 +33,7 @@ public interface RouterUseCase {
             Routertype routerType)
 	Router removeRouterFromCoreRouter(
             Router router, CoreRouter coreRouter)
-            ```
+```
 Example of a usecase is a router method of creating a router and removing router from core router
 ### Ports
 Ports are two types of data interfaces Output and input, Input Port allows the software intents for manipulating domain data
@@ -63,7 +63,7 @@ Cucumber is used for unit testing of all the usecases and handle business except
 	        assertEquals(locationA, networkSwitch.getLocation());
 	        assertEquals(Switchtype.Layer3, networkSwitch.getSwitchType());
 	    }
-      ```
+```
 Case of using cucumber a test for providing data to create switch and the checking it
 ## Framework
 
