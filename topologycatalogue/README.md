@@ -17,3 +17,8 @@ router or network.
 > mvn clean test
 Tests are done using JUnit and tests using different scenarios of creating edge and core routers and filtering by specifications
 ## Application
+Application consists of handling the logic of the business rules implementation using the concept of Ports and Usecases
+
+### Usecases
+Usecases are the requirements which we are dealing with for interacting with the respective topology. It consists of templates
+of different methods which are implmented in usecase
