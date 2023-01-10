@@ -66,4 +66,5 @@ Cucumber is used for unit testing of all the usecases and handle business except
 ```
 Case of using cucumber a test for providing data to create switch and the checking it
 ## Framework
-
+Fremwework comprises of technologies used for communication with the client. It uses Adaptors as a change tolerant approach
+for dealing with different kinds of data input and output channels and have a technology agnostic approach
